@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Afinador de Violín — Musicala</title>
+  <meta name="theme-color" content="#0C41C4" />
+  <!-- Tipografía -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <img src="logo.png" alt="Musicala" class="logo" onerror="this.style.display='none'"/>
+    <h1>Afinador <span class="brand">Musicala</span></h1>
+  </header>
+
+  <main class="container">
+    <section class="controls card">
+      <button id="btnMic" class="btn primary">🎤 Activar micrófono</button>
+
+      <div class="control-row">
+        <label for="mode">Modo:</label>
+        <select id="mode">
+          <option value="violin">Violín (G3–D4–A4–E5)</option>
+          <option value="chromatic">Cromático</option>
+        </select>
+      </div>
+
+      <div class="control-row">
+        <label for="a4">A4 (Hz): <span id="a4Val">440</span></label>
+        <input id="a4" type="range" min="415" max="466" step="1" value="440" />
+      </div>
+    </section>
+
+    <section class="display card" id="displayCard">
+      <div class="status-line">
+        <span id="badgeOk" class="badge hidden">AFINADO ✓</span>
+      </div>
+
+      <!-- Medidor lineal (±50 cents) -->
+      <div class="linear">
+        <div class="bar">
+          <div class="zone zone-left"></div>
+          <div class="zone zone-center"></div>
+          <div class="zone zone-right"></div>
+          <div class="indicator" id="indicator" title="Desviación en cents"></div>
+        </div>
+        <div class="scale">
+          <span>-50</span><span>0</span><span>+50</span>
+        </div>
+      </div>
+
+      <div class="readouts">
+        <div class="big-note" id="note">--</div>
+
+        <div class="row">
+          <span class="label">Frecuencia</span>
+          <span class="val"><span id="freq">0.00</span> Hz</span>
+        </div>
+        <div class="row">
+          <span class="label">Desviación</span>
+          <span class="val"><span id="cents">0.0</span> cents</span>
+        </div>
+        <div class="row">
+          <span class="label">Objetivo</span>
+          <span class="val">
+            <span id="targetNote">--</span>
+            <span id="targetFreq" class="sub"></span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="meters card">
+      <div class="meter"><div class="meter-bar" id="levelBar"></div></div>
+      <div id="status" class="status">Micrófono inactivo</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Hecho con ♥ por la Escuela de artes Musicala.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
